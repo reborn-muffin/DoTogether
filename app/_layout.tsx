@@ -9,23 +9,23 @@ import getColorScheme = Appearance.getColorScheme;
 const RootLayout = () => {
   const colorScheme = getColorScheme()
 
-const lightTheme = {
-  ...MD3LightTheme,
-  roundness: 2,
-  colors: {
-    ...MD3LightTheme.colors,
-    background: '#f3f0f0',
-    primary: '#ffb343',
-    onPrimary: '#fff',
-    secondary: '#6cb2eb',
-    surfaceVariant: '#f6ede7',
-    onSurfaceVariant: '#b7a48c',
-    elevation: {
-      ...MD3LightTheme.colors.elevation,
-      level1: '#fcf8f4'
+  const lightTheme = {
+    ...MD3LightTheme,
+    roundness: 2,
+    colors: {
+      ...MD3LightTheme.colors,
+      background: '#f3f0f0',
+      primary: '#ffb343',
+      onPrimary: '#fff',
+      secondary: '#6cb2eb',
+      surfaceVariant: '#f6ede7',
+      onSurfaceVariant: '#b7a48c',
+      elevation: {
+        ...MD3LightTheme.colors.elevation,
+        level1: '#fcf8f4'
+      }
     }
   }
-}
 
   const darkTheme = {
     ...MD3DarkTheme,

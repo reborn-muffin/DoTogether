@@ -1,11 +1,8 @@
-import {View, Text} from 'react-native';
+import {Redirect} from 'expo-router';
 
+// todo
 const Page = () => {
-  return (
-    <View>
-      <Text>Hello, world!</Text>
-    </View>
-  );
-};
+  return <Redirect href={'/sign-in'} />
+}
 
 export default Page;
