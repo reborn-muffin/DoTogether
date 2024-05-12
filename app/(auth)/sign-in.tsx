@@ -20,6 +20,7 @@ const SignIn = () => {
 
   const signIn = () => {
     handleSignIn(email, password)
+    router.push('/home')
   }
 
   const changeEmail = async (email: string) => {

@@ -1,6 +1,6 @@
 import {View} from 'react-native';
 import {Button, Card, Text} from 'react-native-paper'
-import {Link} from 'expo-router';
+import {Link, useRouter} from 'expo-router';
 import FormField from '../../components/FormField';
 import {useState} from 'react';
 import {handleSignUp} from '../../utils/auth';
@@ -17,6 +17,12 @@ const SignIn = () => {
     password: '',
     cPassword: '',
   })
+  const router = useRouter()
+
+  const signUp = () => {
+    handleSignUp(email, password)
+    router.push('/home')
+  }
 
   const changeEmail = async (email: string) => {
     const errorMessage = await validateEmail(email)
@@ -59,7 +65,7 @@ const SignIn = () => {
         </Card.Content>
 
         <Card.Actions style={{flexDirection: 'column'}}>
-          <Button onPress={() => handleSignUp(email, password)}
+          <Button onPress={signUp}
                   disabled={!isValidationSuccess}
                   style={authStyles.actionButton}
                   mode={'contained'}

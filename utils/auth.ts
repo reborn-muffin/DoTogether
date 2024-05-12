@@ -6,8 +6,10 @@ const userStore = useUserStore.getState()
 
 export const handleSignUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential: any) => {
-      alert('ok')
+    .then((userCredential) => {
+      userStore.setUserId(userCredential.user.uid)
+      userStore.setEmail(userCredential.user.email!) // todo
+      userStore.setAccessToken(userCredential.user.refreshToken)
     })
     .catch((error: any) => {
       alert(error.message)
@@ -16,10 +18,10 @@ export const handleSignUp = (email: string, password: string) => {
 
 export const handleSignIn = (email: string, password: string) => {
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredentials) => {
-      userStore.setUserId(userCredentials.user.uid)
-      userStore.setEmail(userCredentials.user.email!) // todo
-      userStore.setAccessToken(userCredentials.user.refreshToken)
+    .then((userCredential) => {
+      userStore.setUserId(userCredential.user.uid)
+      userStore.setEmail(userCredential.user.email!) // todo
+      userStore.setAccessToken(userCredential.user.refreshToken)
     })
     .catch((error: any) => {
       userStore.setError(error.message)
