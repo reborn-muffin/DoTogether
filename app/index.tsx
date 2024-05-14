@@ -1,8 +1,8 @@
-import {Redirect} from 'expo-router';
+import {Redirect} from 'expo-router'
 
 // todo
 const Page = () => {
   return <Redirect href={'/sign-in'} />
 }
 
-export default Page;
+export default Page

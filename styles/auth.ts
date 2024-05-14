@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native'
 
 export const authStyles = StyleSheet.create({
   container: {
@@ -24,10 +24,10 @@ export const authStyles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     columnGap: 2,
-    marginTop: 2
+    marginTop: 2,
   },
   actionButton: {
     alignSelf: 'flex-start',
-    width: '95%'
+    width: '95%',
   },
 })

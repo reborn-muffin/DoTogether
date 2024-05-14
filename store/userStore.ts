@@ -1,21 +1,21 @@
 // todo export in the end?
-import {create} from 'zustand';
+import {create} from 'zustand'
 
 type UserState = {
-  userId: string,
-  email: string,
-  accessToken: string,
-  error: any,
+  userId: string
+  email: string
+  accessToken: string
+  error: null | string
 }
 
 type UserAction = {
-  setUserId: (userId: string) => void,
-  setEmail: (email: string) => void,
-  setAccessToken: (accessToken: string) => void,
-  setError: (error: any) => void,
+  setUserId: (userId: string) => void
+  setEmail: (email: string) => void
+  setAccessToken: (accessToken: string) => void
+  setError: (error: string) => void
 }
 
-export const useUserStore= create<UserState & UserAction>()((set) => ({
+export const useUserStore = create<UserState & UserAction>()((set) => ({
   userId: '',
   email: '',
   accessToken: '',

@@ -1,11 +1,11 @@
-import {View} from 'react-native';
+import {View} from 'react-native'
 import {Button, Card, Text} from 'react-native-paper'
-import {Link, useRouter} from 'expo-router';
-import FormField from '../../components/FormField';
-import {useState} from 'react';
-import {handleSignIn} from '../../utils/auth';
-import {authStyles} from '../../styles/auth';
-import {validateEmail} from '../../utils/validation/authValidation';
+import {Link, useRouter} from 'expo-router'
+import FormField from '../../components/FormField'
+import {useState} from 'react'
+import {handleSignIn} from '../../utils/auth'
+import {authStyles} from '../../styles/auth'
+import {validateEmail} from '../../utils/validation/authValidation'
 
 // todo use safeareaview?
 const SignIn = () => {
@@ -20,7 +20,7 @@ const SignIn = () => {
 
   const signIn = () => {
     handleSignIn(email, password)
-    router.push('/home')
+    router.push('/(app)/home')
   }
 
   const changeEmail = async (email: string) => {
@@ -38,9 +38,8 @@ const SignIn = () => {
     setPassword(password)
   }
 
-  const isValidationFailed = error.email !== ''
-    || email === ''
-    || password === ''
+  const isValidationFailed =
+    error.email !== '' || email === '' || password === ''
 
   return (
     <View style={authStyles.container}>
@@ -48,32 +47,51 @@ const SignIn = () => {
         <Card.Title titleVariant={'headlineLarge'} title={'Sign In'} />
 
         <Card.Content style={authStyles.cardContent}>
-          <FormField handleChange={changeEmail} error={error.email} placeholder={'Enter email'} keyboardType={'email-address'} />
-          <FormField handleChange={changePassword} error={error.password} placeholder={'Enter password'} secureField />
+          <FormField
+            handleChange={changeEmail}
+            error={error.email}
+            placeholder={'Enter email'}
+            keyboardType={'email-address'}
+          />
+          <FormField
+            handleChange={changePassword}
+            error={error.password}
+            placeholder={'Enter password'}
+            secureField
+          />
         </Card.Content>
 
         <Card.Actions style={authStyles.cardActions}>
-          <Button onPress={signIn} style={authStyles.actionButton} mode={'contained'} disabled={isValidationFailed}>
+          <Button
+            onPress={signIn}
+            style={authStyles.actionButton}
+            mode={'contained'}
+            disabled={isValidationFailed}
+          >
             Sign In
           </Button>
 
           <View style={authStyles.actionsView}>
-            <Text>Don't have an account?</Text>
+            <Text>Don&apos;t have an account?</Text>
             <Link href={'/sign-up'} asChild>
-              <Button compact mode={'text'}>Sign Up</Button>
+              <Button compact mode={'text'}>
+                Sign Up
+              </Button>
             </Link>
           </View>
 
           <View style={authStyles.actionsView}>
             <Text>Forgot password?</Text>
             <Link href={'/reset-password'} asChild>
-              <Button compact mode={'text'}>Reset Password</Button>
+              <Button compact mode={'text'}>
+                Reset Password
+              </Button>
             </Link>
           </View>
         </Card.Actions>
       </Card>
     </View>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

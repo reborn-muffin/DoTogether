@@ -1,5 +1,5 @@
-import {useUserStore} from '../../store/userStore';
-import {Redirect, Slot} from 'expo-router';
+import {useUserStore} from '../../store/userStore'
+import {Redirect, Slot} from 'expo-router'
 
 const AppLayout = () => {
   const userId = useUserStore((state) => state.userId)
@@ -8,7 +8,7 @@ const AppLayout = () => {
     return <Redirect href={'/sign-in'} />
   }
 
-  return <Slot />;
-};
+  return <Slot />
+}
 
-export default AppLayout;
+export default AppLayout

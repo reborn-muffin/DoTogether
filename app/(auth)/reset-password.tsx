@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import {useState} from 'react'
 
-import {View} from 'react-native';
-import FormField from '../../components/FormField';
-import {Button, Card, Text} from 'react-native-paper';
-import {Link} from 'expo-router';
-import {handleResetPassword} from '../../utils/auth';
-import {authStyles} from '../../styles/auth';
-import {validateEmail} from '../../utils/validation/authValidation';
+import {View} from 'react-native'
+import FormField from '../../components/FormField'
+import {Button, Card, Text} from 'react-native-paper'
+import {Link} from 'expo-router'
+import {handleResetPassword} from '../../utils/auth'
+import {authStyles} from '../../styles/auth'
+import {validateEmail} from '../../utils/validation/authValidation'
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('')
@@ -24,30 +24,36 @@ const ResetPassword = () => {
         <Card.Title titleVariant={'headlineLarge'} title={'Reset Password'} />
 
         <Card.Content>
-          <FormField handleChange={changeEmail}
-                     error={error}
-                     placeholder={'Enter email'}
-                     keyboardType={'email-address'} />
+          <FormField
+            handleChange={changeEmail}
+            error={error}
+            placeholder={'Enter email'}
+            keyboardType={'email-address'}
+          />
         </Card.Content>
 
         <Card.Actions style={authStyles.cardActions}>
-          <Button onPress={() => handleResetPassword(email)}
-                  disabled={error !== '' || email === ''}
-                  style={authStyles.actionButton}
-                  mode={'contained'}>
+          <Button
+            onPress={() => handleResetPassword(email)}
+            disabled={error !== '' || email === ''}
+            style={authStyles.actionButton}
+            mode={'contained'}
+          >
             Reset Password
           </Button>
 
           <View style={authStyles.actionsView}>
             <Text>Back to</Text>
             <Link href={'/sign-in'} asChild>
-              <Button compact mode={'text'}>Sign In</Button>
+              <Button compact mode={'text'}>
+                Sign In
+              </Button>
             </Link>
           </View>
         </Card.Actions>
       </Card>
     </View>
-  );
-};
+  )
+}
 
-export default ResetPassword;
+export default ResetPassword
