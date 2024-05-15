@@ -1,6 +1,6 @@
-import {useUserStore} from '../../store/userStore'
+import {useUserStore} from '../../src/store/userStore'
 import {Redirect, Slot} from 'expo-router'
-import {ScreenRoutes} from '../../consts/routes'
+import {ScreenRoutes} from '../../src/consts/routes'
 
 const AppLayout = () => {
   const userId = useUserStore((state) => state.userId)

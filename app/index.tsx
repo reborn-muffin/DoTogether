@@ -1,5 +1,5 @@
 import {Redirect} from 'expo-router'
-import {ScreenRoutes} from '../consts/routes'
+import {ScreenRoutes} from '../src/consts/routes'
 
 // todo
 const Page = () => {

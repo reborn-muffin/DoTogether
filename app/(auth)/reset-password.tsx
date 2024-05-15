@@ -1,15 +1,15 @@
 import {useState} from 'react'
 
 import {View} from 'react-native'
-import FormField from '../../components/FormField'
+import FormField from '../../src/components/FormField'
 import {Button, Card, Dialog, Portal, Text, useTheme} from 'react-native-paper'
 import {Link, useRouter} from 'expo-router'
-import {authStyles} from '../../styles/auth'
-import {validateEmail} from '../../utils/validation/authValidation'
+import {authStyles} from '../../src/styles/auth'
+import {validateEmail} from '../../src/utils/validation/authValidation'
 import {sendPasswordResetEmail} from 'firebase/auth'
-import {auth} from '../../config/firebase'
+import {auth} from '../../src/config/firebase'
 import {FirebaseError} from 'firebase/app'
-import {ScreenRoutes} from '../../consts/routes'
+import {ScreenRoutes} from '../../src/consts/routes'
 
 const ResetPassword = () => {
   const router = useRouter()

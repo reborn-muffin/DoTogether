@@ -5,7 +5,7 @@ import {Inter_400Regular} from '@expo-google-fonts/inter'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
 import getColorScheme = Appearance.getColorScheme
-import {ScreenNames} from '../consts/routes'
+import {ScreenNames} from '../src/consts/routes'
 
 const RootLayout = () => {
   const colorScheme = getColorScheme()

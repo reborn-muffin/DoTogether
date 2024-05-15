@@ -1,7 +1,7 @@
 import {Button, Card, Text} from 'react-native-paper'
 import {Link} from 'expo-router'
 import {View, StyleSheet} from 'react-native'
-import {ScreenRoutes} from '../../consts/routes'
+import {ScreenRoutes} from '../../src/consts/routes'
 
 const ResetSuccessful = () => {
   return (

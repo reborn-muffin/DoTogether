@@ -1,12 +1,12 @@
 import {View} from 'react-native'
 import {Button, Card, Text} from 'react-native-paper'
 import {Link, useRouter} from 'expo-router'
-import FormField from '../../components/FormField'
+import FormField from '../../src/components/FormField'
 import {useState} from 'react'
-import {handleSignUp} from '../../utils/auth'
-import {authStyles} from '../../styles/auth'
-import {validateEmail, validatePassword} from '../../utils/validation/authValidation'
-import {ScreenRoutes} from '../../consts/routes'
+import {handleSignUp} from '../../src/utils/auth'
+import {authStyles} from '../../src/styles/auth'
+import {validateEmail, validatePassword} from '../../src/utils/validation/authValidation'
+import {ScreenRoutes} from '../../src/consts/routes'
 
 // todo use safeareaview?
 const SignIn = () => {

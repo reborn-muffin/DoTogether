@@ -1,6 +1,6 @@
 import {Stack} from 'expo-router'
 import {useTheme} from 'react-native-paper'
-import {ScreenNames} from '../../consts/routes'
+import {ScreenNames} from '../../src/consts/routes'
 
 const AuthLayout = () => {
   const theme = useTheme()
