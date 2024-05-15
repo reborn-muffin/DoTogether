@@ -9,7 +9,7 @@ import {validateEmail} from '../../utils/validation/authValidation'
 import {sendPasswordResetEmail} from 'firebase/auth'
 import {auth} from '../../config/firebase'
 import {FirebaseError} from 'firebase/app'
-import {PageRoutes} from '../../consts/routes'
+import {ScreenRoutes} from '../../consts/routes'
 
 const ResetPassword = () => {
   const router = useRouter()
@@ -29,7 +29,7 @@ const ResetPassword = () => {
   const resetPassword = async () => {
     try {
       await sendPasswordResetEmail(auth, email)
-      router.navigate(PageRoutes.RESET_SUCCESSFUL)
+      router.navigate(ScreenRoutes.RESET_SUCCESSFUL)
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
         setResettingError(err.message)
@@ -65,7 +65,7 @@ const ResetPassword = () => {
 
           <View style={authStyles.actionsView}>
             <Text>Back to</Text>
-            <Link href={'/sign-in'} asChild>
+            <Link href={ScreenRoutes.SIGN_IN} asChild>
               <Button compact mode={'text'}>
                 Sign In
               </Button>

@@ -5,10 +5,8 @@ import FormField from '../../components/FormField'
 import {useState} from 'react'
 import {handleSignUp} from '../../utils/auth'
 import {authStyles} from '../../styles/auth'
-import {
-  validateEmail,
-  validatePassword,
-} from '../../utils/validation/authValidation'
+import {validateEmail, validatePassword} from '../../utils/validation/authValidation'
+import {ScreenRoutes} from '../../consts/routes'
 
 // todo use safeareaview?
 const SignIn = () => {
@@ -24,7 +22,7 @@ const SignIn = () => {
 
   const signUp = () => {
     handleSignUp(email, password)
-    router.push('/(app)/home')
+    router.push(ScreenRoutes.HOME)
   }
 
   const changeEmail = async (email: string) => {
@@ -95,7 +93,7 @@ const SignIn = () => {
 
           <View style={authStyles.actionsView}>
             <Text>Already have an account?</Text>
-            <Link href={'/sign-in'} asChild>
+            <Link href={ScreenRoutes.SIGN_IN} asChild>
               <Button compact mode={'text'}>
                 Sign In
               </Button>

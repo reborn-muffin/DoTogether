@@ -1,6 +1,7 @@
 import {Button, Card, Text} from 'react-native-paper'
 import {Link} from 'expo-router'
 import {View, StyleSheet} from 'react-native'
+import {ScreenRoutes} from '../../consts/routes'
 
 const ResetSuccessful = () => {
   return (
@@ -11,7 +12,7 @@ const ResetSuccessful = () => {
           <Text>If you provided a valid email address, the reset link has been sent</Text>
         </Card.Content>
         <Card.Actions>
-          <Link href={'/sign-in'} asChild>
+          <Link href={ScreenRoutes.SIGN_IN} asChild>
             <Button mode={'text'}>Go to Sign In</Button>
           </Link>
         </Card.Actions>

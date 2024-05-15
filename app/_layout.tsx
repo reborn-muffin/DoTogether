@@ -5,6 +5,7 @@ import {Inter_400Regular} from '@expo-google-fonts/inter'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
 import getColorScheme = Appearance.getColorScheme
+import {ScreenNames} from '../consts/routes'
 
 const RootLayout = () => {
   const colorScheme = getColorScheme()
@@ -53,6 +54,7 @@ const RootLayout = () => {
   const statusBarColor = paperTheme.colors.background
   const statusBarStyle = isLight ? 'dark' : 'light'
 
+  // todo is here needed index screen?
   return (
     <PaperProvider theme={paperTheme}>
       <SafeAreaView style={{flex: 1}}>
@@ -67,8 +69,8 @@ const RootLayout = () => {
             },
           }}
         >
-          <Stack.Screen name={'index'} />
-          <Stack.Screen name={'(auth)'} />
+          <Stack.Screen name={ScreenNames.INDEX} />
+          <Stack.Screen name={ScreenNames.AUTH_GROUP} />
         </Stack>
       </SafeAreaView>
     </PaperProvider>

@@ -6,6 +6,7 @@ import {useState} from 'react'
 import {handleSignIn} from '../../utils/auth'
 import {authStyles} from '../../styles/auth'
 import {validateEmail} from '../../utils/validation/authValidation'
+import {ScreenRoutes} from '../../consts/routes'
 
 // todo use safeareaview?
 const SignIn = () => {
@@ -20,7 +21,7 @@ const SignIn = () => {
 
   const signIn = () => {
     handleSignIn(email, password)
-    router.push('/(app)/home')
+    router.push(ScreenRoutes.HOME)
   }
 
   const changeEmail = async (email: string) => {
@@ -72,7 +73,7 @@ const SignIn = () => {
 
           <View style={authStyles.actionsView}>
             <Text>Don&apos;t have an account?</Text>
-            <Link href={'/sign-up'} asChild>
+            <Link href={ScreenRoutes.SIGN_UP} asChild>
               <Button compact mode={'text'}>
                 Sign Up
               </Button>
@@ -81,7 +82,7 @@ const SignIn = () => {
 
           <View style={authStyles.actionsView}>
             <Text>Forgot password?</Text>
-            <Link href={'/reset-password'} asChild>
+            <Link href={ScreenRoutes.RESET_PASSWORD} asChild>
               <Button compact mode={'text'}>
                 Reset Password
               </Button>
