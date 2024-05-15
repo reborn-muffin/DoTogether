@@ -38,8 +38,7 @@ const SignIn = () => {
     setPassword(password)
   }
 
-  const isValidationFailed =
-    error.email !== '' || email === '' || password === ''
+  const isValidationFailed = error.email !== '' || email === '' || password === ''
 
   return (
     <View style={authStyles.container}>

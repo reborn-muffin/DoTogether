@@ -23,7 +23,10 @@ const RootLayout = () => {
       elevation: {
         ...MD3LightTheme.colors.elevation,
         level1: '#fcf8f4',
+        level3: '#fcf8f4',
+        error: '#fff3f3',
       },
+      backdrop: 'rgba(212,200,191,0.39)',
     },
   }
 

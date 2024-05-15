@@ -1,8 +1,4 @@
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-} from 'firebase/auth'
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import {auth} from '../config/firebase'
 import {useUserStore} from '../store/userStore'
 
@@ -30,15 +26,5 @@ export const handleSignIn = (email: string, password: string) => {
     .catch((error: Error) => {
       userStore.setError(error.message)
       alert(error)
-    })
-}
-
-export const handleResetPassword = (email: string) => {
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      alert('ok') // todo
-    })
-    .catch((error: Error) => {
-      alert(error.message)
     })
 }

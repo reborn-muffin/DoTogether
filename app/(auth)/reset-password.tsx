@@ -2,15 +2,23 @@ import {useState} from 'react'
 
 import {View} from 'react-native'
 import FormField from '../../components/FormField'
-import {Button, Card, Text} from 'react-native-paper'
-import {Link} from 'expo-router'
-import {handleResetPassword} from '../../utils/auth'
+import {Button, Card, Dialog, Portal, Text, useTheme} from 'react-native-paper'
+import {Link, useRouter} from 'expo-router'
 import {authStyles} from '../../styles/auth'
 import {validateEmail} from '../../utils/validation/authValidation'
+import {sendPasswordResetEmail} from 'firebase/auth'
+import {auth} from '../../config/firebase'
+import {FirebaseError} from 'firebase/app'
+import {PageRoutes} from '../../consts/routes'
 
 const ResetPassword = () => {
+  const router = useRouter()
+  const theme = useTheme()
+
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
+  const [isModalShow, setIsModalShow] = useState(false)
+  const [resettingError, setResettingError] = useState('')
 
   const changeEmail = async (email: string) => {
     const errorMessage = await validateEmail(email)
@@ -18,6 +26,19 @@ const ResetPassword = () => {
     setEmail(email)
   }
 
+  const resetPassword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email)
+      router.navigate(PageRoutes.RESET_SUCCESSFUL)
+    } catch (err: unknown) {
+      if (err instanceof FirebaseError) {
+        setResettingError(err.message)
+        setIsModalShow(true)
+      }
+    }
+  }
+
+  // todo reset or resseting?
   return (
     <View style={authStyles.container}>
       <Card style={authStyles.card}>
@@ -34,7 +55,7 @@ const ResetPassword = () => {
 
         <Card.Actions style={authStyles.cardActions}>
           <Button
-            onPress={() => handleResetPassword(email)}
+            onPress={resetPassword}
             disabled={error !== '' || email === ''}
             style={authStyles.actionButton}
             mode={'contained'}
@@ -52,6 +73,20 @@ const ResetPassword = () => {
           </View>
         </Card.Actions>
       </Card>
+
+      <Portal>
+        <Dialog visible={isModalShow}>
+          <Dialog.Title>Error</Dialog.Title>
+          <Dialog.Content>
+            <Text selectable style={{color: theme.colors.error}}>
+              {resettingError}
+            </Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => setIsModalShow(false)}>Got it</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   )
 }
