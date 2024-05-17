@@ -13,7 +13,7 @@ const ThemeSegment = () => {
   ]
 
   const handleValueChange = (value: string) => {
-    setColorScheme(value === '' ? (value as ColorSchemeName) : null)
+    setColorScheme(value !== '' ? (value as ColorSchemeName) : null)
     SecureStore.setItem('colorScheme', value)
   }
 

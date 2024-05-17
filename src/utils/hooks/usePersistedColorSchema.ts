@@ -6,11 +6,12 @@ import {useState} from 'react'
 
 const usePersistedColorSchema = () => {
   const scheme = SecureStore.getItem('colorScheme')
-  const deviceColorTheme = getColorScheme()
-  const [colorScheme, setColorScheme] = useState(scheme === '' ? deviceColorTheme : scheme)
+  const isDeviceScheme = scheme === '' || scheme === undefined
+  const initialScheme = isDeviceScheme ? getColorScheme() : scheme
+  const [colorScheme, setColorScheme] = useState(initialScheme)
 
   addChangeListener(() => {
-    if (scheme === '') {
+    if (isDeviceScheme) {
       setColorScheme(getColorScheme())
     } else {
       setColorScheme(scheme)
