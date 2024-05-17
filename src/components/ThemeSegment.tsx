@@ -1,10 +1,8 @@
-import {Appearance, ColorSchemeName, View} from 'react-native'
+import {Appearance, View} from 'react-native'
 import SettingsSegment from './ui/SettingsSegment'
 import setColorScheme = Appearance.setColorScheme
 import {Text} from 'react-native-paper'
 import * as SecureStore from 'expo-secure-store'
-
-export type ColorScheme = 'light' | 'dark' | ''
 
 const ThemeSegment = () => {
   const prevValue = SecureStore.getItem('colorScheme')

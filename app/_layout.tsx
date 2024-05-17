@@ -3,11 +3,6 @@ import {Slot} from 'expo-router'
 import {Inter_400Regular} from '@expo-google-fonts/inter'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
-import {useState} from 'react'
-import {Appearance} from 'react-native'
-import addChangeListener = Appearance.addChangeListener
-import * as SecureStore from 'expo-secure-store'
-import getColorScheme = Appearance.getColorScheme
 import {usePersistedColorSchema} from '../src/utils/hooks/usePersistedColorSchema'
 
 const RootLayout = () => {

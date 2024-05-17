@@ -1,41 +1,9 @@
-import {Text, View, StyleSheet} from 'react-native'
-import {Button, RadioButton, useTheme} from 'react-native-paper'
-import {FC} from 'react'
-import {SegmentedButton} from 'react-native-paper/lib/typescript/components/SegmentedButtons/SegmentedButtonItem'
-import SettingsSegment from '../../../src/components/ui/SettingsSegment'
+import {View, StyleSheet} from 'react-native'
+import {Button, useTheme} from 'react-native-paper'
 import ThemeSegment from '../../../src/components/ThemeSegment'
-import {getAuth} from 'firebase/auth'
 import {FirebaseError} from 'firebase/app'
 import {auth} from '../../../src/config/firebase'
 import {useUserStore} from '../../../src/store/userStore'
-
-enum SettingsOptionType {
-  RadioButton,
-  SegmentedButton,
-}
-
-// interface SettingsOption {
-//   title: string
-//   onPress: () => void
-//   type: SettingsOptionType
-// }
-//
-// const SettingsOption: FC<SettingsOption> = ({title, onPress, type}) => {
-//   let action
-//
-//   if (type === SettingsOptionType.RadioButton)
-//     action = <RadioButton value={'qwerty'} onPress={onPress} />
-//   else if (type === SettingsOptionType.SegmentedButton)
-//     action = <ThemeSegment />
-//
-//
-//   return (
-//     <View>
-//       <Text>SettingsOption</Text>
-//       {action}
-//     </View>
-//   )
-// }
 
 const Settings = () => {
   const theme = useTheme()
