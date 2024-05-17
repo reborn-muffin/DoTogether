@@ -5,7 +5,7 @@ import * as SecureStore from 'expo-secure-store'
 import {useState} from 'react'
 
 const usePersistedColorSchema = () => {
-  let scheme = SecureStore.getItem('colorScheme')
+  const scheme = SecureStore.getItem('colorScheme')
   const deviceColorTheme = getColorScheme()
   const [colorScheme, setColorScheme] = useState(scheme === '' ? deviceColorTheme : scheme)
 
