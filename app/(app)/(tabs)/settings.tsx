@@ -7,6 +7,7 @@ import ThemeSegment from '../../../src/components/ThemeSegment'
 import {getAuth} from 'firebase/auth'
 import {FirebaseError} from 'firebase/app'
 import {auth} from '../../../src/config/firebase'
+import {useUserStore} from '../../../src/store/userStore'
 
 enum SettingsOptionType {
   RadioButton,
@@ -38,11 +39,14 @@ enum SettingsOptionType {
 
 const Settings = () => {
   const theme = useTheme()
+  const userStore = useUserStore()
 
   const handleSignOut = () => {
     auth
       .signOut()
-      .then()
+      .then(() => {
+        userStore.setUserId('')
+      })
       .catch((error: unknown) => {
         if (error instanceof FirebaseError) {
           alert(error.message)

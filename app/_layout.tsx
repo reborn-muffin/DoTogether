@@ -5,11 +5,13 @@ import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
 import {useState} from 'react'
 import {Appearance} from 'react-native'
-import getColorScheme = Appearance.getColorScheme
 import addChangeListener = Appearance.addChangeListener
+import * as SecureStore from 'expo-secure-store'
+import getColorScheme = Appearance.getColorScheme
+import {usePersistedColorSchema} from '../src/utils/hooks/usePersistedColorSchema'
 
 const RootLayout = () => {
-  const [colorScheme, setColorScheme] = useState(getColorScheme())
+  const colorScheme = usePersistedColorSchema()
   const lightTheme = {
     ...MD3LightTheme,
     roundness: 2,
@@ -50,10 +52,6 @@ const RootLayout = () => {
   if (!fontsLoaded && !fontError) {
     return null
   }
-
-  addChangeListener((theme) => {
-    setColorScheme(theme.colorScheme)
-  })
 
   // todo is here needed index screen?
   return (

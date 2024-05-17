@@ -5,10 +5,11 @@ import {SegmentedButtons} from 'react-native-paper'
 interface SettingsSegmentProps {
   buttons: {value: string; label: string}[]
   onValueChange: (value: string) => void
+  prevValue?: string
 }
 
-const SettingsSegment: FC<SettingsSegmentProps> = ({buttons, onValueChange}) => {
-  const [value, setValue] = useState('')
+const SettingsSegment: FC<SettingsSegmentProps> = ({buttons, onValueChange, prevValue = ''}) => {
+  const [value, setValue] = useState(prevValue)
 
   const handleValueChange = (value: string) => {
     setValue(value)

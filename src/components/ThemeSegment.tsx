@@ -2,10 +2,12 @@ import {Appearance, ColorSchemeName, View} from 'react-native'
 import SettingsSegment from './ui/SettingsSegment'
 import setColorScheme = Appearance.setColorScheme
 import {Text} from 'react-native-paper'
+import * as SecureStore from 'expo-secure-store'
 
 export type ColorScheme = 'light' | 'dark' | ''
 
 const ThemeSegment = () => {
+  const prevValue = SecureStore.getItem('colorScheme')
   const buttons = [
     {value: 'light', label: 'Light'},
     {value: 'dark', label: 'Dark'},
@@ -15,12 +17,17 @@ const ThemeSegment = () => {
   const handleValueChange = (value: string) => {
     const colorScheme: null | string = value === '' ? null : value
     setColorScheme(colorScheme)
+    SecureStore.setItem('colorScheme', value)
   }
 
   return (
     <View>
       <Text variant={'bodyLarge'}>Theme</Text>
-      <SettingsSegment buttons={buttons} onValueChange={handleValueChange} />
+      <SettingsSegment
+        prevValue={prevValue ?? ''}
+        buttons={buttons}
+        onValueChange={handleValueChange}
+      />
     </View>
   )
 }

@@ -16,6 +16,9 @@ const AuthLayout = () => {
     <Stack
       screenOptions={{
         headerShown: false,
+        statusBarColor: theme.colors.background,
+        statusBarStyle: theme.dark ? 'light' : 'dark',
+        navigationBarColor: theme.colors.background,
         contentStyle: {backgroundColor: theme.colors.background},
       }}
     >
