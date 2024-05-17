@@ -1,15 +1,15 @@
-import {Appearance} from 'react-native'
 import {useFonts} from 'expo-font'
-import {Stack} from 'expo-router'
+import {Slot} from 'expo-router'
 import {Inter_400Regular} from '@expo-google-fonts/inter'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
+import {useState} from 'react'
+import {Appearance} from 'react-native'
 import getColorScheme = Appearance.getColorScheme
-import {ScreenNames} from '../src/consts/routes'
+import addChangeListener = Appearance.addChangeListener
 
 const RootLayout = () => {
-  const colorScheme = getColorScheme()
-
+  const [colorScheme, setColorScheme] = useState(getColorScheme())
   const lightTheme = {
     ...MD3LightTheme,
     roundness: 2,
@@ -51,27 +51,15 @@ const RootLayout = () => {
     return null
   }
 
-  const statusBarColor = paperTheme.colors.background
-  const statusBarStyle = isLight ? 'dark' : 'light'
+  addChangeListener((theme) => {
+    setColorScheme(theme.colorScheme)
+  })
 
   // todo is here needed index screen?
   return (
     <PaperProvider theme={paperTheme}>
       <SafeAreaView style={{flex: 1}}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            statusBarColor: statusBarColor,
-            statusBarStyle: statusBarStyle,
-            navigationBarColor: paperTheme.colors.background,
-            contentStyle: {
-              backgroundColor: paperTheme.colors.surface,
-            },
-          }}
-        >
-          <Stack.Screen name={ScreenNames.INDEX} />
-          <Stack.Screen name={ScreenNames.AUTH_GROUP} />
-        </Stack>
+        <Slot />
       </SafeAreaView>
     </PaperProvider>
   )

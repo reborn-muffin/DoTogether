@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 import {View} from 'react-native'
-import FormField from '../../src/components/FormField'
+import FormField from '../../src/components/ui/FormField'
 import {Button, Card, Dialog, Portal, Text, useTheme} from 'react-native-paper'
 import {Link, useRouter} from 'expo-router'
 import {authStyles} from '../../src/styles/auth'

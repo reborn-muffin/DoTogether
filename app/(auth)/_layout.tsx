@@ -1,9 +1,16 @@
-import {Stack} from 'expo-router'
+import {Stack, useRouter} from 'expo-router'
 import {useTheme} from 'react-native-paper'
-import {ScreenNames} from '../../src/consts/routes'
+import {ScreenNames, ScreenRoutes} from '../../src/consts/routes'
+import {useUserStore} from '../../src/store/userStore'
 
 const AuthLayout = () => {
   const theme = useTheme()
+  const router = useRouter()
+  const userId = useUserStore((state) => state.userId)
+
+  if (userId !== '') {
+    router.navigate(ScreenRoutes.HOME)
+  }
 
   return (
     <Stack

@@ -1,6 +1,5 @@
 enum ScreenRoutes {
-  INDEX = '/',
-  HOME = '/(app)/home',
+  HOME = '/(app)/(tabs)/home',
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
   RESET_PASSWORD = '/reset-password',
@@ -8,13 +7,13 @@ enum ScreenRoutes {
 }
 
 enum ScreenNames {
-  INDEX = 'index',
+  HOME = 'home',
   SIGN_IN = 'sign-in',
   SIGN_UP = 'sign-up',
   RESET_PASSWORD = 'reset-password',
   RESET_SUCCESSFUL = 'reset-successful',
-  APP_GROUP = '(app)',
-  AUTH_GROUP = '(auth)',
+  SETTINGS = 'settings',
+  TABS = '(tabs)',
 }
 
 export {ScreenRoutes, ScreenNames}

@@ -1,7 +1,7 @@
 import {View} from 'react-native'
 import {Button, Card, Text} from 'react-native-paper'
 import {Link, useRouter} from 'expo-router'
-import FormField from '../../src/components/FormField'
+import FormField from '../../src/components/ui/FormField'
 import {useState} from 'react'
 import {handleSignUp} from '../../src/utils/auth'
 import {authStyles} from '../../src/styles/auth'
