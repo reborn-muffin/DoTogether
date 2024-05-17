@@ -10,11 +10,11 @@ const usePersistedColorSchema = () => {
   const initialScheme = isDeviceScheme ? getColorScheme() : scheme
   const [colorScheme, setColorScheme] = useState(initialScheme)
 
-  addChangeListener(() => {
+  addChangeListener((theme) => {
     if (isDeviceScheme) {
       setColorScheme(getColorScheme())
     } else {
-      setColorScheme(scheme)
+      setColorScheme(theme.colorScheme)
     }
   })
 
