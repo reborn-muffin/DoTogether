@@ -2,7 +2,7 @@ import {useState} from 'react'
 
 import {View} from 'react-native'
 import FormField from '../../src/components/ui/FormField'
-import {Button, Card, Dialog, Portal, Text, useTheme} from 'react-native-paper'
+import {Button, Card, Text} from 'react-native-paper'
 import {Link, useRouter} from 'expo-router'
 import {authStyles} from '../../src/styles/auth'
 import {validateEmail} from '../../src/utils/validation/authValidation'
@@ -11,16 +11,15 @@ import {auth} from '../../src/config/firebase'
 import {FirebaseError} from 'firebase/app'
 import {ScreenRoutes} from '../../src/consts/routes'
 import {useUserStore} from '../../src/store/userStore'
+import {useModalStore} from '../../src/store/useModalStore'
 
 const ResetPassword = () => {
   const router = useRouter()
-  const theme = useTheme()
   const userStore = useUserStore()
+  const modalStore = useModalStore()
 
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
-  const [isModalShow, setIsModalShow] = useState(false)
-  const [resettingError, setResettingError] = useState('')
 
   const changeEmail = async (email: string) => {
     const errorMessage = await validateEmail(email)
@@ -35,8 +34,7 @@ const ResetPassword = () => {
       router.navigate(ScreenRoutes.RESET_SUCCESSFUL)
     } catch (err: unknown) {
       if (err instanceof FirebaseError) {
-        setResettingError(err.message)
-        setIsModalShow(true)
+        modalStore.setModal({title: 'Error', body: err.message, isError: true})
       }
     } finally {
       userStore.setIsLoading(false)
@@ -79,20 +77,6 @@ const ResetPassword = () => {
           </View>
         </Card.Actions>
       </Card>
-
-      <Portal>
-        <Dialog visible={isModalShow}>
-          <Dialog.Title>Error</Dialog.Title>
-          <Dialog.Content>
-            <Text selectable style={{color: theme.colors.error}}>
-              {resettingError}
-            </Text>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setIsModalShow(false)}>Got it</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
     </View>
   )
 }

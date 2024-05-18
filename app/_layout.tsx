@@ -8,9 +8,12 @@ import {auth} from '../src/config/firebase'
 import {useEffect} from 'react'
 import {updateCurrentUser} from 'firebase/auth'
 import {getStoredAuth} from '../src/utils/auth'
+import CustomDialog from '../src/components/CustomDialog'
+import {useModalStore} from '../src/store/useModalStore'
 
 const RootLayout = () => {
   const colorScheme = usePersistedColorSchema()
+  const modalStore = useModalStore()
 
   useEffect(() => {
     const storedAuth = getStoredAuth()
@@ -18,9 +21,7 @@ const RootLayout = () => {
     if (storedAuth && user) {
       updateCurrentUser(auth, storedAuth)
         .then()
-        .catch((err) => {
-          alert(err.message)
-        })
+        .catch((err) => modalStore.setModal({title: 'Error', body: err.message, isError: true}))
     }
   }, [])
 
@@ -70,6 +71,7 @@ const RootLayout = () => {
     <PaperProvider theme={paperTheme}>
       <SafeAreaView style={{flex: 1}}>
         <Slot />
+        <CustomDialog />
       </SafeAreaView>
     </PaperProvider>
   )

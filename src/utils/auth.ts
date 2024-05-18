@@ -2,27 +2,22 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, User} from '
 import {auth} from '../config/firebase'
 import * as SecureStorage from 'expo-secure-store'
 import {useUserStore} from '../store/userStore'
+import {useModalStore} from '../store/useModalStore'
 
 const userStore = useUserStore.getState()
+const modalStore = useModalStore.getState()
 
 export const handleSignUp = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      setStoredAuth(userCredential.user)
-    })
-    .catch((error: Error) => {
-      alert(error.message)
-    })
+    .then((userCredential) => setStoredAuth(userCredential.user))
+    .catch((err: Error) => modalStore.setModal({title: 'Error', body: err.message, isError: true}))
 }
 
 export const handleSignIn = (email: string, password: string) => {
   userStore.setIsLoading(true)
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => setStoredAuth(userCredential.user))
-    .catch((error: Error) => {
-      // userStore.setError(error.message)
-      alert(error.message)
-    })
+    .catch((err: Error) => modalStore.setModal({title: 'Error', body: err.message, isError: true}))
     .finally(() => userStore.setIsLoading(false))
 }
 
@@ -34,12 +29,8 @@ const setStoredAuth = (user: User) => {
 const clearStoredAuth = () => {
   userStore.setIsLoading(true)
   SecureStorage.deleteItemAsync('auth')
-    .then(() => {
-      userStore.setIsSignedIn(false)
-    })
-    .catch((err) => {
-      alert(err.message)
-    })
+    .then(() => userStore.setIsSignedIn(false))
+    .catch((err) => modalStore.setModal({title: 'Error', body: err.message, isError: true}))
     .finally(() => userStore.setIsLoading(false))
 }
 
