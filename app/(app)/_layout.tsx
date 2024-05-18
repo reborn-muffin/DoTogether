@@ -1,14 +1,14 @@
-import {useUserStore} from '../../src/store/userStore'
 import {Stack, useRouter} from 'expo-router'
 import {ScreenNames, ScreenRoutes} from '../../src/consts/routes'
 import {useTheme} from 'react-native-paper'
+import {useUserStore} from '../../src/store/userStore'
 
 const AppLayout = () => {
   const theme = useTheme()
   const router = useRouter()
-  const userStore = useUserStore()
+  const isSignedIn = useUserStore((state) => state.isSignedIn)
 
-  if (userStore.userId === '') {
+  if (!isSignedIn) {
     router.navigate(ScreenRoutes.SIGN_IN)
   }
 

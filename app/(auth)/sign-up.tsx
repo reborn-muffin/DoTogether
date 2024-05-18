@@ -7,9 +7,13 @@ import {handleSignUp} from '../../src/utils/auth'
 import {authStyles} from '../../src/styles/auth'
 import {validateEmail, validatePassword} from '../../src/utils/validation/authValidation'
 import {ScreenRoutes} from '../../src/consts/routes'
+import {useUserStore} from '../../src/store/userStore'
 
 // todo use safeareaview?
 const SignIn = () => {
+  const router = useRouter()
+  const userStore = useUserStore()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [cPassword, setCPassword] = useState('')
@@ -18,7 +22,6 @@ const SignIn = () => {
     password: '',
     cPassword: '',
   })
-  const router = useRouter()
 
   const signUp = () => {
     handleSignUp(email, password)
@@ -84,7 +87,8 @@ const SignIn = () => {
         <Card.Actions style={{flexDirection: 'column'}}>
           <Button
             onPress={signUp}
-            disabled={!isValidationSuccess}
+            loading={userStore.isLoading}
+            disabled={!isValidationSuccess || userStore.isLoading}
             style={authStyles.actionButton}
             mode={'contained'}
           >

@@ -1,27 +1,19 @@
 // todo export in the end?
 import {create} from 'zustand'
 
-type UserState = {
-  userId: string
-  email: string
-  accessToken: string
-  error: null | string
+interface UserState {
+  isSignedIn: boolean
+  isLoading: boolean
 }
 
-type UserAction = {
-  setUserId: (userId: string) => void
-  setEmail: (email: string) => void
-  setAccessToken: (accessToken: string) => void
-  setError: (error: string) => void
+interface UserActions {
+  setIsSignedIn: (isSignedIn: boolean) => void
+  setIsLoading: (isSignedIn: boolean) => void
 }
 
-export const useUserStore = create<UserState & UserAction>()((set) => ({
-  userId: '',
-  email: '',
-  accessToken: '',
-  error: null,
-  setUserId: (userId: string) => set({userId}),
-  setEmail: (email: string) => set({email}),
-  setAccessToken: (accessToken: string) => set({accessToken}),
-  setError: (error: string) => set({error}),
+export const useUserStore = create<UserState & UserActions>((set) => ({
+  isSignedIn: false,
+  isLoading: false,
+  setIsSignedIn: (isSignedIn: boolean) => set({isSignedIn}),
+  setIsLoading: (isLoading: boolean) => set({isLoading}),
 }))

@@ -4,9 +4,26 @@ import {Inter_400Regular} from '@expo-google-fonts/inter'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {MD3DarkTheme, MD3LightTheme, PaperProvider} from 'react-native-paper'
 import {usePersistedColorSchema} from '../src/utils/hooks/usePersistedColorSchema'
+import {auth} from '../src/config/firebase'
+import {useEffect} from 'react'
+import {updateCurrentUser} from 'firebase/auth'
+import {getStoredAuth} from '../src/utils/auth'
 
 const RootLayout = () => {
   const colorScheme = usePersistedColorSchema()
+
+  useEffect(() => {
+    const storedAuth = getStoredAuth()
+    const user = auth.currentUser
+    if (storedAuth && user) {
+      updateCurrentUser(auth, storedAuth)
+        .then()
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
+  }, [])
+
   const lightTheme = {
     ...MD3LightTheme,
     roundness: 2,

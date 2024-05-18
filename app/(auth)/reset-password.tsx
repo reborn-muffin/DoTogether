@@ -10,10 +10,12 @@ import {sendPasswordResetEmail} from 'firebase/auth'
 import {auth} from '../../src/config/firebase'
 import {FirebaseError} from 'firebase/app'
 import {ScreenRoutes} from '../../src/consts/routes'
+import {useUserStore} from '../../src/store/userStore'
 
 const ResetPassword = () => {
   const router = useRouter()
   const theme = useTheme()
+  const userStore = useUserStore()
 
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -28,6 +30,7 @@ const ResetPassword = () => {
 
   const resetPassword = async () => {
     try {
+      userStore.setIsLoading(true)
       await sendPasswordResetEmail(auth, email)
       router.navigate(ScreenRoutes.RESET_SUCCESSFUL)
     } catch (err: unknown) {
@@ -35,6 +38,8 @@ const ResetPassword = () => {
         setResettingError(err.message)
         setIsModalShow(true)
       }
+    } finally {
+      userStore.setIsLoading(false)
     }
   }
 
@@ -56,7 +61,8 @@ const ResetPassword = () => {
         <Card.Actions style={authStyles.cardActions}>
           <Button
             onPress={resetPassword}
-            disabled={error !== '' || email === ''}
+            loading={userStore.isLoading}
+            disabled={error !== '' || email === '' || userStore.isLoading}
             style={authStyles.actionButton}
             mode={'contained'}
           >

@@ -6,9 +6,9 @@ import {useUserStore} from '../../src/store/userStore'
 const AuthLayout = () => {
   const theme = useTheme()
   const router = useRouter()
-  const userId = useUserStore((state) => state.userId)
+  const userStore = useUserStore()
 
-  if (userId !== '') {
+  if (userStore.isSignedIn) {
     router.navigate(ScreenRoutes.HOME)
   }
 
